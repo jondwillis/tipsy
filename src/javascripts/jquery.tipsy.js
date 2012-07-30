@@ -66,7 +66,7 @@
                     $tip.addClass(maybeCall(this.options.className, this.$element[0]));
                 }
                 
-                if (this.options.fade && fadeDurationIn > 0) {
+                if (this.options.fade && this.options.fadeDurationIn > 0) {
                     $tip.stop().css({opacity: 0, display: 'block', visibility: 'visible'}).animate(
                                                      {opacity: this.options.opacity}, this.options.fadeDurationIn);
                 } else {
@@ -76,7 +76,7 @@
         },
         
         hide: function() {
-            if (this.options.fade && fadeDurationOut > 0) {
+            if (this.options.fade && this.options.fadeDurationOut > 0) {
                 this.tip().stop().fadeOut(this.options.fadeDurationOut, function() { $(this).remove(); });
             } else {
                 this.tip().remove();
@@ -183,8 +183,8 @@
         delayIn: 0,
         delayOut: 0,
         fade: false,
-        fadeDurationIn: 'normal', // e.g. 'slow', 'normal', 'fast', 400 (
-        fadeDurationOut: 'normal', // e.g. 'slow', 'normal', 'fast', 400 (ms))
+        fadeDurationIn: 200, // milliseconds
+        fadeDurationOut: 200, // milliseconds
         fallback: '',
         gravity: 'n',
         html: false,
