@@ -2,6 +2,7 @@
 // version 1.0.0a
 // (c) 2008-2010 jason frame [jason@onehackoranother.com]
 // released under the MIT license
+// Separated fadeDuration out into fadeDurationIn and fadeDurationOut
 
 (function($) {
     
@@ -65,9 +66,9 @@
                     $tip.addClass(maybeCall(this.options.className, this.$element[0]));
                 }
                 
-                if (this.options.fade) {
+                if (this.options.fade && fadeDurationIn > 0) {
                     $tip.stop().css({opacity: 0, display: 'block', visibility: 'visible'}).animate(
-                                                     {opacity: this.options.opacity}, this.options.fadeDuration);
+                                                     {opacity: this.options.opacity}, this.options.fadeDurationIn);
                 } else {
                     $tip.css({visibility: 'visible', opacity: this.options.opacity});
                 }
@@ -75,8 +76,8 @@
         },
         
         hide: function() {
-            if (this.options.fade) {
-                this.tip().stop().fadeOut(this.options.fadeDuration, function() { $(this).remove(); });
+            if (this.options.fade && fadeDurationOut > 0) {
+                this.tip().stop().fadeOut(this.options.fadeDurationOut, function() { $(this).remove(); });
             } else {
                 this.tip().remove();
             }
@@ -182,7 +183,8 @@
         delayIn: 0,
         delayOut: 0,
         fade: false,
-        fadeDuration: 'normal', // e.g. 'slow', 'normal', 'fast', 400 (ms)
+        fadeDurationIn: 'normal', // e.g. 'slow', 'normal', 'fast', 400 (
+        fadeDurationOut: 'normal', // e.g. 'slow', 'normal', 'fast', 400 (ms))
         fallback: '',
         gravity: 'n',
         html: false,
